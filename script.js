@@ -1,3 +1,5 @@
+'use strict'
+
 const urlBase = "https://developer.nps.gov/api/v1/parks";
 
 const apiKey = "api_key=9NPqO7TqbXHyISrF2UDHjaJUs4ZYYdXblOppbmgy";
@@ -87,8 +89,9 @@ for (let i=0; i< array.length; i++){
 
 function displayResults(responseJson){
   $('#results').removeClass('hidden');
-  console.log(responseJson.data.length);
   for(let i=0; i< responseJson.data.length; i++){
-  $('#results-list').append(`<li>${responseJson.data[i].fullName}<br><a href="${responseJson.data[i].url}">LINK HERE</a><br>Description: ${responseJson.data[i].description}<br> ADDRESS:<br>${responseJson.data[i].addresses[i].line1} - ${responseJson.data[i].addresses[i].line2}<br>${responseJson.data[i].addresses[i].city}<br>${responseJson.data[i].addresses[i].stateCode}</li>`);
+    console.log(responseJson.data[i].addresses[0]);
+    console.log(responseJson.data[i].addresses[1]);
+  $('#results-list').append(`<li>${responseJson.data[i].fullName}<br><a href="${responseJson.data[i].url}">LINK HERE</a><br>Description: ${responseJson.data[i].description}<br> ADDRESS:<br>${responseJson.data[i].addresses[0].line1} - ${responseJson.data[i].addresses[0].line2}<br>${responseJson.data[i].addresses[0].city}<br>${responseJson.data[i].addresses[0].stateCode}</li>`);
   }
 }
