@@ -87,11 +87,16 @@ for (let i=0; i< array.length; i++){
 
 // $('#results-list').append
 
-function displayResults(responseJson){
+
+  function displayResults(responseJson){
   $('#results').removeClass('hidden');
+  console.log(responseJson.data)
   for(let i=0; i< responseJson.data.length; i++){
-    console.log(responseJson.data[i].addresses[0]);
-    console.log(responseJson.data[i].addresses[1]);
-  $('#results-list').append(`<li>${responseJson.data[i].fullName}<br><a href="${responseJson.data[i].url}">LINK HERE</a><br>Description: ${responseJson.data[i].description}<br> ADDRESS:<br>${responseJson.data[i].addresses[0].line1} - ${responseJson.data[i].addresses[0].line2}<br>${responseJson.data[i].addresses[0].city}<br>${responseJson.data[i].addresses[0].stateCode}</li>`);
+    $('#results-list').append(`<li>${responseJson.data[i].fullName}<br><a href="${responseJson.data[i].url}">LINK HERE</a><br>Description: ${responseJson.data[i].description}`)
+    if(responseJson.data[i].addresses.length > 0) {
+      $('#results-list').append(`ADDRESS:<br>${responseJson.data[i].addresses[0].line1} - ${responseJson.data[i].addresses[0].line2}<br>${responseJson.data[i].addresses[0].city}<br>${responseJson.data[i].addresses[0].stateCode}</li>`);
+    } else {
+      $('#results-list').append(`ADDRESS:<br>No Address</li>`)
+    }
   }
 }
